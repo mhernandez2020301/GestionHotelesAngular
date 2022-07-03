@@ -1,1 +1,66 @@
-<p>usuarios works!</p>
+<div class="aa_htmlTable">
+  <h2 class="aa_h2">Dino Amores</h2>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">
+    Agregar Admin Hotel
+  </button>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Username</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ul *ngFor="let user of usuarioModelGet">
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.username }}</td>
+      </ul>
+  </table>
+</div>
+
+   <!--  Modal Agregar Admin Hotel -->
+   <div class="cajaa">
+    <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregar Admin Hotel</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+
+            <form>
+              <div class="mg-3">
+                <label for="imputNombre" class="form-label"> Nombre </label>
+                <input type="text" id="imputNombre" class="form-control" name="nombre" #nombre="ngModel"
+                  [(ngModel)]="usuarioModelPost.nombre">
+              </div>
+              <div class="mg-3">
+                <label for="imputNombre" class="form-label"> Username </label>
+                <input type="text" id="imputNombre" class="form-control" name="nombre" #username="ngModel"
+                  [(ngModel)]="usuarioModelPost.username">
+              </div>
+              <div class="mg-3">
+                <label for="imputDescripcion" class="form-label"> Contraseña </label>
+                <input type="text" id="imputDescripcion" class="form-control" name="password"
+                  #password="ngModel" [(ngModel)]="usuarioModelPost.password">
+              </div>
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="postAdminHotel()">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
