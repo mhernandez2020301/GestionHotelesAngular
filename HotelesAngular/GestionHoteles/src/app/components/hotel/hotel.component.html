@@ -1,1 +1,101 @@
-<p>hotel works!</p>
+<body>
+
+
+    <div class="h1ybutton">
+    <h1>Hoteles</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarHotelModal">
+      Agregar Empresas
+    </button>
+  </div>
+<div class="container">
+  <div class="row ">
+  <div class="col-12 col-md-4" *ngFor="let hotel of hotelModelGet">
+
+    <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ hotel.NombreHotel }}</h5>
+          <p class="card-text">
+            direccion: {{ hotel.direccionHotel }}.
+          </p>
+          <a class="btn btn-primary">
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-danger" (click)="deleteHotel(hotel._id)">Eliminar</button>
+            <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample" (click)="getHotelId(hotel._id)">
+              Editar
+            </button>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+  </div>
+
+  </div>
+
+</div>
+
+   <!--  Modal Agregar Empresas -->
+    <div class="cajaa">
+      <div class="modal fade" id="agregarHotelModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog">
+
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Agregar Hotel</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+              <form>
+                <div class="mg-3">
+                  <label for="imputNombreHotel" class="form-label"> Nombre Hotel </label>
+                  <input type="text" id="imputNombreHotel" class="form-control" name="NombreHotel" #NombreHotel="ngModel"
+                    [(ngModel)]="hotelModelPost.NombreHotel">
+                </div>
+                <div class="mg-3">
+                  <label for="imputdireccionHotel" class="form-label"> Direccion Hotel </label>
+                  <input type="text" id="imputdireccionHotel" class="form-control" name="direccionHotel" #direccionHotel="ngModel"
+                    [(ngModel)]="hotelModelPost.direccionHotel">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" (click)="postHotel()">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Producto</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <form>
+            <div class="mg-3">
+              <label for="imputNombreHotel" class="form-label"> Nombre </label>
+              <input type="text" id="imputNombreHotel" class="form-control" name="NombreHotel" #NombreHotel="ngModel"
+                [(ngModel)]="hotelModelGetId.NombreHotel">
+            </div>
+            <div class="mg-3">
+                <label for="imputdireccionHotel" class="form-label"> Proveedor </label>
+                <input type="text" id="imputdireccionHotel" class="form-control" name="direccionHotel" #direccionHotel="ngModel"
+                  [(ngModel)]="hotelModelGetId.direccionHotel">
+              </div>
+
+          <button type="button" class="btn btn-success" (click)="putHotel()" data-bs-dismiss="offcanvas">Editar Producto</button>
+        </form>
+      </div>
+    </div>
+</body>
