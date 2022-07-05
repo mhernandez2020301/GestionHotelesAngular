@@ -7,15 +7,18 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { AdminhGuard } from './guards/adminh.guard';
+import { InicioGuard } from './guards/inicio.guard';
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
+  {path: '', component: MainComponent, canActivate:[InicioGuard], children:[
+    {path: 'usuarios', component: UsuariosComponent},  
+    {path: 'hoteles', component: HotelComponent},
+  ]},
   {path: 'login', component: LoginComponent},
   {path: 'inicio', component: HotelComponent},
   {path: 'navbar', component: NavbarComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'usuarios', component: UsuariosComponent},
-  {path: 'hoteles', component: HotelComponent},
   {path: 'search', component: SearchComponent},
 ];
 
@@ -24,3 +27,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// canActivate:[InicioGuard],
